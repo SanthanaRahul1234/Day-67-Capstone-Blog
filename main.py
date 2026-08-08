@@ -13,7 +13,7 @@ app = Flask(__name__)
 ckeditor = CKEditor(app)
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
 Bootstrap5(app)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///posts.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DB_URI','sqlite:///posts.db')
 dbmanager = DbManager(app)
 
 @app.route('/')
