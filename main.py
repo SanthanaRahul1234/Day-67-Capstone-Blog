@@ -5,12 +5,13 @@ from flask_ckeditor import CKEditor, CKEditorField
 from datetime import date
 from db_manager import DbManager
 from form_manager import Add_Post
+import os
 
 
 app = Flask(__name__)
 # Initialize the CKEditor extension
 ckeditor = CKEditor(app)
-app.config['SECRET_KEY'] = '8BYkEfBA6O6donzWlSihBXox7C0sKR6b'
+app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
 Bootstrap5(app)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///posts.db'
 dbmanager = DbManager(app)
@@ -79,4 +80,4 @@ def contact():
 
 
 if __name__ == "__main__":
-    app.run(debug=True, port=5003)
+    app.run(debug=False)
